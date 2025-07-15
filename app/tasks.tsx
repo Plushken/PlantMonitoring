@@ -10,6 +10,7 @@ import { needsWatering, needsFertilizing, getWateringInterval, getFertilizingInt
 import { BackIcon } from '../components/shared/Icons';
 import { handleWaterWithConfirmation, handleFertilizeWithConfirmation } from '../utils/care-handlers';
 import { navigateToPlantDetails, navigateToAddPlant } from '../utils/navigation-utils';
+import { Colors } from '../config/theme';
 
 export default function TasksScreen() {
   const router = useRouter();
@@ -113,7 +114,7 @@ export default function TasksScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -122,17 +123,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    borderBottomColor: Colors.border,
   },
   backButton: {
     fontSize: 16,
-    color: '#0A5C5C',
+    color: Colors.primary,
     fontWeight: '500',
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   emptyState: {
     flex: 1,
@@ -143,25 +144,25 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     textAlign: 'center',
     marginBottom: 12,
   },
   emptySubtitle: {
     fontSize: 16,
-    color: '#899191',
+    color: Colors.textSecondary,
     textAlign: 'center',
     lineHeight: 24,
     marginBottom: 24,
   },
   addPlantButton: {
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
   },
   addPlantButtonText: {
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginVertical: 16,
   },
 

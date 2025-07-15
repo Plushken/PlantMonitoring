@@ -7,6 +7,7 @@ import OnboardingIllustration from '../components/OnboardingIllustration';
 import PrimaryButton from '../components/PrimaryButton';
 import { SvgXml } from 'react-native-svg';
 import onboarding2Svg from '../assets/onboarding2-illustration.svg';
+import { Colors } from '../config/theme';
 
 const Onboarding2Screen: React.FC = () => {
   const router = useRouter();
@@ -34,8 +35,7 @@ const Onboarding2Screen: React.FC = () => {
         Monitor watering levels, get care recommendations, and watch your plants thrive with our tips
       </Text>
       <PrimaryButton
-        label="Next"
-        accessibilityLabel="Finish onboarding and go to home"
+        title="Next"
         onPress={handleComplete}
         style={styles.button}
       />
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 12,
     fontWeight: '400',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     textAlign: 'center',
     marginBottom: 32,
     letterSpacing: 1,

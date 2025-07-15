@@ -1,33 +1,41 @@
 import React from 'react';
-import { Pressable, Text, StyleSheet, PressableProps, ViewStyle, TextStyle } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { Colors } from '../config/theme';
 
-interface PrimaryButtonProps extends PressableProps {
-  label: string;
+interface PrimaryButtonProps {
+  title: string;
+  onPress: () => void;
   style?: ViewStyle;
   textStyle?: TextStyle;
-  accessibilityLabel?: string;
+  disabled?: boolean;
 }
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({
-  label,
-  style,
-  textStyle,
-  accessibilityLabel,
-  ...props
-}) => (
-  <Pressable
-    style={({ pressed }) => [styles.button, style, pressed && styles.pressed]}
-    accessibilityRole="button"
-    accessibilityLabel={accessibilityLabel || label}
-    {...props}
-  >
-    <Text style={[styles.text, textStyle]}>{label}</Text>
-  </Pressable>
-);
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ 
+  title, 
+  onPress, 
+  style, 
+  textStyle, 
+  disabled = false 
+}) => {
+  return (
+    <TouchableOpacity
+      style={[
+        styles.button,
+        disabled && styles.disabled,
+        style,
+      ]}
+      onPress={onPress}
+      disabled={disabled}
+      activeOpacity={0.8}
+    >
+      <Text style={[styles.text, textStyle]}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: 'center',
@@ -38,11 +46,11 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  pressed: {
-    opacity: 0.8,
+  disabled: {
+    opacity: 0.6,
   },
   text: {
-    color: '#fff',
+    color: Colors.textOnPrimary,
     fontWeight: '500',
     fontSize: 16,
     letterSpacing: 1,

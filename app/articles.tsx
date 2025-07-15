@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { articlesData, Article } from '../data/articles';
 import { BackIcon } from '../components/shared/Icons';
 import { navigateToArticle } from '../utils/navigation-utils';
+import { Colors } from '../config/theme';
 
 const ArticleCard = ({ article, onPress }: { article: Article; onPress: () => void }) => {
   return (
@@ -96,7 +97,7 @@ export default function ArticlesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 14,
     paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.background,
   },
   backButton: {
     width: 40,
@@ -116,15 +117,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   placeholder: {
     width: 40,
   },
   categoryContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: Colors.border,
     paddingVertical: 8,
   },
   categoryContent: {
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: Colors.border,
     marginRight: 8,
     alignSelf: 'flex-start',
     minWidth: 'auto',
@@ -143,15 +144,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   selectedCategoryButton: {
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
   },
   categoryButtonText: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#899191',
+    color: Colors.textSecondary,
   },
   selectedCategoryButtonText: {
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
   articlesList: {
     flex: 1,
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     paddingTop: 14,
   },
   articleCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     marginBottom: 16,
     flexDirection: 'row',
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
   articleCardImage: {
     width: 120,
     height: 120,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
   },
   articleCardContent: {
     flex: 1,
@@ -188,13 +189,13 @@ const styles = StyleSheet.create({
   articleCardTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     lineHeight: 20,
   },
   articleCardDescription: {
     fontSize: 12,
     fontWeight: '400',
-    color: '#899191',
+    color: Colors.textSecondary,
     lineHeight: 18,
     marginTop: 4,
   },
@@ -207,8 +208,8 @@ const styles = StyleSheet.create({
   articleCardCategory: {
     fontSize: 10,
     fontWeight: '500',
-    color: '#0A5C5C',
-    backgroundColor: '#E9FAFA',
+    color: Colors.primary,
+    backgroundColor: Colors.backgroundSecondary,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 8,
@@ -216,6 +217,6 @@ const styles = StyleSheet.create({
   articleCardReadTime: {
     fontSize: 10,
     fontWeight: '400',
-    color: '#899191',
+    color: Colors.textSecondary,
   },
 }); 

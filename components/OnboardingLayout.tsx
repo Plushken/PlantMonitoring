@@ -1,20 +1,24 @@
-import React, { ReactNode } from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Colors } from '../config/theme';
 
 interface OnboardingLayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({ children }) => (
   <SafeAreaView style={styles.safeArea}>
-    <View style={styles.container}>{children}</View>
+    <View style={styles.container}>
+      {children}
+    </View>
   </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   container: {
     flex: 1,

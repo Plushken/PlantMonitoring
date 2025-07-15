@@ -9,6 +9,7 @@ import {
 } from '../utils/plant-utils';
 import { PlantIcon } from '../components/shared/Icons';
 import SmallIntensityIndicator from './shared/SmallIntensityIndicator';
+import { Colors } from '../config/theme';
 
 interface PlantCardProps {
   plant: SavedPlant;
@@ -134,7 +135,7 @@ const PlantCard = ({
 
 const styles = StyleSheet.create({
   plantCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     marginBottom: 16,
     flexDirection: 'row',
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   plantImageContainer: {
     width: 100,
     height: 214,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
     borderTopLeftRadius: 12,
     borderBottomLeftRadius: 12,
     justifyContent: 'center',
@@ -167,13 +168,13 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   plantIconText: {
     fontSize: 24,
-    color: '#0A5C5C',
+    color: Colors.primary,
   },
   plantInfo: {
     flex: 1,
@@ -182,17 +183,17 @@ const styles = StyleSheet.create({
   plantName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   plantScientific: {
     fontSize: 12,
     fontStyle: 'italic',
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 2,
   },
   plantLocation: {
     fontSize: 12,
-    color: '#0A5C5C',
+    color: Colors.primary,
     marginTop: 4,
   },
   careIndicators: {
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
   },
   careLabel: {
     fontSize: 10,
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 4,
   },
   careInfo: {
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   },
   careText: {
     fontSize: 12,
-    color: '#FF6B6B',
+    color: Colors.error,
     fontWeight: '500',
     marginBottom: 2,
   },
@@ -226,20 +227,20 @@ const styles = StyleSheet.create({
   actionButton: {
     flex: 1,
     height: 32,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: Colors.border,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
   },
   urgentButton: {
     backgroundColor: '#FFF3CD',
-    borderColor: '#FFC107',
+    borderColor: Colors.warning,
     borderWidth: 1,
   },
   actionButtonText: {
     fontSize: 10,
     fontWeight: '500',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   urgentButtonText: {
     color: '#856404',
@@ -252,7 +253,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     flex: 1,
-    backgroundColor: '#F5A623',
+    backgroundColor: Colors.warning,
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -262,11 +263,11 @@ const styles = StyleSheet.create({
   editButtonText: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
   deleteButton: {
     flex: 1,
-    backgroundColor: '#E74C3C',
+    backgroundColor: Colors.error,
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -276,7 +277,7 @@ const styles = StyleSheet.create({
   deleteButtonText: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
 });
 

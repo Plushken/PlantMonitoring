@@ -6,6 +6,7 @@ import OnboardingIllustration from '../components/OnboardingIllustration';
 import PrimaryButton from '../components/PrimaryButton';
 import { SvgXml } from 'react-native-svg';
 import onboarding1Svg from '../assets/onboarding1-illustration.svg';
+import { Colors } from '../config/theme';
 
 const Onboarding1Screen: React.FC = () => {
   const router = useRouter();
@@ -24,8 +25,7 @@ const Onboarding1Screen: React.FC = () => {
         Our plant care app is your reliable assistant in creating a green paradise in your home or office.
       </Text>
       <PrimaryButton
-        label="Next"
-        accessibilityLabel="Next onboarding step"
+        title="Next"
         onPress={() => router.replace('/onboarding2')}
         style={styles.button}
       />
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 12,
     fontWeight: '400',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     textAlign: 'center',
     marginBottom: 32,
     letterSpacing: 1,

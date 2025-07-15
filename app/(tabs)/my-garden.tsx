@@ -8,7 +8,7 @@ import { needsWatering, needsFertilizing } from '../../utils/plant-utils';
 import { BackIcon, PlantIcon } from '../../components/shared/Icons';
 import { handleWaterWithConfirmation, handleFertilizeWithConfirmation } from '../../utils/care-handlers';
 import { navigateToPlantDetails, navigateToEditPlant, navigateToAddPlant } from '../../utils/navigation-utils';
-
+import { Colors } from '../../config/theme';
 
 
 export default function MyGardenScreen() {
@@ -203,7 +203,7 @@ export default function MyGardenScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -211,26 +211,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 14,
     paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.background,
   },
   headerTitle: {
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   addIconButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   addIcon: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
   emptyState: {
     flex: 1,
@@ -241,14 +241,14 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginTop: 20,
     textAlign: 'center',
   },
   emptySubtitle: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 8,
     textAlign: 'center',
     lineHeight: 20,
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   addButton: {
     width: '100%',
     height: 48,
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
@@ -274,12 +274,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     marginHorizontal: 14,
     marginTop: 14,
     paddingVertical: 20,
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#0A5C5C',
+    color: Colors.primary,
   },
   urgentStat: {
     color: '#E53E3E',
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: 12,
     fontWeight: '400',
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 4,
   },
   plantsContainer: {

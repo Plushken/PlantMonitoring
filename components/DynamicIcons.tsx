@@ -1,16 +1,17 @@
 import React from 'react';
 import Svg, { Path, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
+import { Colors } from '../config/theme';
 
 // Sun icon with different intensities
 export const SunIcon = ({ level = 1, size = 24 }: { level: number; size?: number }) => {
   const getColor = () => {
     switch (level) {
-      case 1: return '#FFA726'; // Light orange for partial sun
-      case 2: return '#FF9800'; // Medium orange for partial sun/shade
-      case 3: return '#FF8F00'; // Deep orange for full sun
-      case 4: return '#FF6F00'; // Bright orange for intense sun
-      case 5: return '#E65100'; // Deep orange-red for very intense sun
-      default: return '#FFB74D';
+      case 1: return Colors.light.level1;
+      case 2: return Colors.light.level2;
+      case 3: return Colors.light.level3;
+      case 4: return Colors.light.level4;
+      case 5: return Colors.light.level5;
+      default: return Colors.light.level2;
     }
   };
 
@@ -49,47 +50,46 @@ export const SunIcon = ({ level = 1, size = 24 }: { level: number; size?: number
   );
 };
 
-// Water droplet icon with different intensities
+// Water drop icon with different intensities  
 export const WaterIcon = ({ level = 1, size = 24 }: { level: number; size?: number }) => {
   const getColor = () => {
     switch (level) {
-      case 1: return '#81C784'; // Light green for drought tolerant
-      case 2: return '#4FC3F7'; // Light blue for low water
-      case 3: return '#29B6F6'; // Medium blue for moderate water
-      case 4: return '#1976D2'; // Deep blue for high water
-      case 5: return '#0D47A1'; // Very deep blue for aquatic
-      default: return '#42A5F5';
+      case 1: return Colors.water.level1;
+      case 2: return Colors.water.level2;
+      case 3: return Colors.water.level3;
+      case 4: return Colors.water.level4;
+      case 5: return Colors.water.level5;
+      default: return Colors.water.level2;
     }
   };
 
-  const getDroplets = () => {
-    return Math.min(level, 5); // Max 5 droplets
+  const getOpacity = () => {
+    return Math.min(0.3 + (level * 0.15), 1.0); // Increase opacity with level
   };
 
   const color = getColor();
-  const droplets = getDroplets();
+  const opacity = getOpacity();
 
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       {/* Main water drop */}
       <Path
-        d="M12 2.69L17.5 8.5C18.09 9.19 18.37 10.04 18.37 10.91C18.37 13.22 16.5 15.09 14.19 15.09C11.88 15.09 10.01 13.22 10.01 10.91C10.01 10.04 10.29 9.19 10.88 8.5L12 2.69Z"
+        d="M12 2C8 6 5 10 5 14C5 18.4 8.6 22 13 22C17.4 22 21 18.4 21 14C21 10 18 6 12 2Z"
         fill={color}
-        opacity={droplets >= 1 ? 1 : 0.3}
+        opacity={opacity}
       />
-      
-      {/* Additional smaller drops for higher levels */}
-      {droplets >= 2 && (
-        <Circle cx="7" cy="18" r="2" fill={color} opacity={0.8} />
+      {/* Additional drops for higher levels */}
+      {level >= 2 && (
+        <Circle cx="8" cy="10" r="1.5" fill={color} opacity={opacity * 0.7} />
       )}
-      {droplets >= 3 && (
-        <Circle cx="17" cy="18" r="1.5" fill={color} opacity={0.7} />
+      {level >= 3 && (
+        <Circle cx="16" cy="8" r="1" fill={color} opacity={opacity * 0.6} />
       )}
-      {droplets >= 4 && (
-        <Circle cx="4" cy="14" r="1" fill={color} opacity={0.6} />
+      {level >= 4 && (
+        <Circle cx="6" cy="16" r="1" fill={color} opacity={opacity * 0.5} />
       )}
-      {droplets >= 5 && (
-        <Circle cx="20" cy="14" r="1" fill={color} opacity={0.5} />
+      {level >= 5 && (
+        <Circle cx="18" cy="14" r="0.8" fill={color} opacity={opacity * 0.4} />
       )}
     </Svg>
   );
@@ -99,12 +99,12 @@ export const WaterIcon = ({ level = 1, size = 24 }: { level: number; size?: numb
 export const FertilizerIcon = ({ level = 1, size = 24 }: { level: number; size?: number }) => {
   const getColor = () => {
     switch (level) {
-      case 1: return '#C8E6C9'; // Very light green for minimal fertilizer
-      case 2: return '#A5D6A7'; // Light green for low fertilizer
-      case 3: return '#81C784'; // Medium green for moderate fertilizer
-      case 4: return '#66BB6A'; // Darker green for high fertilizer
-      case 5: return '#4CAF50'; // Deep green for intensive fertilizer
-      default: return '#81C784';
+      case 1: return Colors.fertilizer.level1;
+      case 2: return Colors.fertilizer.level2;
+      case 3: return Colors.fertilizer.level3;
+      case 4: return Colors.fertilizer.level4;
+      case 5: return Colors.fertilizer.level5;
+      default: return Colors.fertilizer.level3;
     }
   };
 

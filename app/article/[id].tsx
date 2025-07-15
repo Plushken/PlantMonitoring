@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { getArticleById } from '../../data/articles';
 import { BackIcon } from '../../components/shared/Icons';
+import { Colors } from '../../config/theme';
 
 export default function ArticleScreen() {
   const router = useRouter();
@@ -63,7 +64,7 @@ export default function ArticleScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -71,28 +72,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 14,
     paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.background,
   },
   backButton: {
     width: 40,
     height: 40,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 1,
-    color: '#2E3333',
-    textAlign: 'center',
-    flex: 1,
-    paddingHorizontal: 10,
+    color: Colors.textPrimary,
   },
   placeholder: {
     width: 40,
   },
   content: {
     flex: 1,
+    paddingHorizontal: 14,
+    paddingTop: 20,
   },
   imageContainer: {
     paddingHorizontal: 14,
@@ -100,9 +100,8 @@ const styles = StyleSheet.create({
   },
   articleImage: {
     width: '100%',
-    height: 240,
-    borderRadius: 12,
-    backgroundColor: '#E9FAFA',
+    height: 250,
+    backgroundColor: Colors.backgroundSecondary,
   },
   metaContainer: {
     flexDirection: 'row',
@@ -117,8 +116,10 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 12,
-    fontWeight: '500',
-    color: '#0A5C5C',
+    fontWeight: '400',
+    color: Colors.textSecondary,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   publishDate: {
     fontSize: 12,

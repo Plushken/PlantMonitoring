@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { HomeIcon, GardenIcon } from '../../components/shared/Icons';
+import { Colors } from '../../config/theme';
 
 export default function TabsLayout() {
   return (
@@ -8,7 +9,7 @@ export default function TabsLayout() {
       screenOptions={{
         tabBarStyle: {
           height: 72,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: Colors.surface,
           borderTopWidth: 0,
           elevation: 8,
           shadowColor: '#000',
@@ -16,8 +17,8 @@ export default function TabsLayout() {
           shadowOpacity: 0.08,
           shadowRadius: 48,
         },
-        tabBarActiveTintColor: '#0A5C5C',
-        tabBarInactiveTintColor: '#899191',
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.textTertiary,
         tabBarShowLabel: false,
       }}
     >

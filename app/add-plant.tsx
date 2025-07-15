@@ -10,6 +10,7 @@ import { PERMAPEOPLE_CONFIG, isAPIConfigured } from '../config/api';
 import plantStorage from '../services/plant-storage';
 import SmallIntensityIndicator from '../components/shared/SmallIntensityIndicator';
 import { WikipediaAPI } from '../services/wikipedia-api';
+import { Colors } from '../config/theme';
 
 // Debounce utility function
 const useDebounce = <T,>(value: T, delay: number): T => {
@@ -28,7 +29,7 @@ const useDebounce = <T,>(value: T, delay: number): T => {
   return debouncedValue;
 };
 
-import { BackIcon, CameraIcon } from '../components/shared/Icons';
+import { BackIcon } from '../components/shared/Icons';
 import { navigateToMyGarden } from '../utils/navigation-utils';
 
 
@@ -413,7 +414,7 @@ const AddPlantScreen = () => {
               </>
             ) : (
               <>
-                <CameraIcon />
+                <Text style={{ fontSize: 48, color: Colors.primary }}>📷</Text>
                 <Text style={styles.uploadText}>Upload or take a photo</Text>
               </>
             )}
@@ -428,7 +429,7 @@ const AddPlantScreen = () => {
             value={selectedUser}
             onChangeText={setSelectedUser}
             placeholder="Enter owner name..."
-            placeholderTextColor="#899191"
+            placeholderTextColor={Colors.textSecondary}
           />
         </View>
 
@@ -488,7 +489,7 @@ const AddPlantScreen = () => {
                                   onChangeText={handlePlantNameChange}
                   onBlur={handlePlantNameBlur}
                 placeholder="Enter or search plant name..."
-                placeholderTextColor="#899191"
+                placeholderTextColor={Colors.textSecondary}
               />
               {isSearching && (
                 <Text style={styles.searchingText}>Searching...</Text>
@@ -519,7 +520,7 @@ const AddPlantScreen = () => {
               value={nickname}
               onChangeText={setNickname}
               placeholder="Enter plant nickname (optional)..."
-              placeholderTextColor="#899191"
+              placeholderTextColor={Colors.textSecondary}
             />
           </View>
 
@@ -530,7 +531,7 @@ const AddPlantScreen = () => {
               value={plantType}
               onChangeText={setPlantType}
               placeholder="e.g., Flowering plant, Herb, Tree..."
-              placeholderTextColor="#899191"
+              placeholderTextColor={Colors.textSecondary}
             />
           </View>
 
@@ -541,7 +542,7 @@ const AddPlantScreen = () => {
               value={location}
               onChangeText={setLocation}
               placeholder="Where will you keep this plant?"
-              placeholderTextColor="#899191"
+              placeholderTextColor={Colors.textSecondary}
             />
           </View>
 
@@ -552,7 +553,7 @@ const AddPlantScreen = () => {
               value={description}
               onChangeText={setDescription}
               placeholder="Add any personal notes about this plant..."
-              placeholderTextColor="#899191"
+              placeholderTextColor={Colors.textSecondary}
               multiline
               textAlignVertical="top"
             />
@@ -574,7 +575,7 @@ const AddPlantScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -582,7 +583,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 14,
     paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.background,
   },
   backButton: {
     width: 40,
@@ -594,7 +595,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   content: {
     flex: 1,
@@ -605,12 +606,12 @@ const styles = StyleSheet.create({
   },
   imagePlaceholder: {
     height: 240,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#0A5C5C',
+    borderColor: Colors.primary,
     borderStyle: 'dashed',
   },
   uploadedImage: {
@@ -623,14 +624,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#0A5C5C',
+    color: Colors.primary,
     marginTop: 8,
   },
   loadingText: {
     fontSize: 14,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#0A5C5C',
+    color: Colors.primary,
     textAlign: 'center',
   },
   inputSection: {
@@ -656,21 +657,21 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight: 20,
     letterSpacing: 0.5,
-    color: '#899191',
+    color: Colors.textSecondary,
     textAlign: 'center',
   },
   scientificNameText: {
     fontSize: 12,
     fontWeight: '500',
     fontStyle: 'italic',
-    color: '#0A5C5C',
+    color: Colors.primary,
     textAlign: 'center',
     marginTop: 8,
   },
   permaPeopleDescriptionSection: {
     paddingHorizontal: 14,
     marginBottom: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     padding: 16,
     shadowColor: '#000',
@@ -685,14 +686,14 @@ const styles = StyleSheet.create({
   permaPeopleDescriptionTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginBottom: 12,
   },
   permaPeopleDescriptionText: {
     fontSize: 13,
     fontWeight: '400',
     lineHeight: 20,
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginBottom: 8,
   },
   form: {
@@ -705,12 +706,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginBottom: 8,
   },
   input: {
     height: 48,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     shadowColor: '#000',
     shadowOffset: {
@@ -726,7 +727,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 48,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     paddingHorizontal: 16,
     fontSize: 14,
@@ -767,28 +768,28 @@ const styles = StyleSheet.create({
   searchResultItem: {
     padding: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: Colors.border,
   },
   searchResultName: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   searchResultScientific: {
     fontSize: 12,
-    color: '#899191',
+    color: Colors.textSecondary,
     fontStyle: 'italic',
     marginTop: 2,
   },
   footer: {
     padding: 14,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
+    borderTopColor: Colors.border,
   },
   addButton: {
     height: 48,
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
@@ -805,14 +806,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
   modal: {
     justifyContent: 'flex-end',
     margin: 0,
   },
   modalContent: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingVertical: 20,
@@ -824,10 +825,10 @@ const styles = StyleSheet.create({
   modalItemText: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   selectedModalItemText: {
-    color: '#0A5C5C',
+    color: Colors.primary,
     fontWeight: '600',
   },
 });

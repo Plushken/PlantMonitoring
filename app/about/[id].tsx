@@ -10,6 +10,7 @@ import { BackIcon, PlantIcon } from '../../components/shared/Icons';
 import { handleWaterWithConfirmation, handleFertilizeWithConfirmation } from '../../utils/care-handlers';
 import { formatDate, getDaysAgo } from '../../utils/date-utils';
 import { navigateToEditPlant } from '../../utils/navigation-utils';
+import { Colors } from '../../config/theme';
 
 export default function AboutScreen() {
   const router = useRouter();
@@ -296,7 +297,7 @@ export default function AboutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -304,19 +305,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 14,
     paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    borderBottomColor: Colors.border,
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   editText: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#0A5C5C',
+    color: Colors.primary,
   },
   content: {
     flex: 1,
@@ -328,7 +329,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 16,
-    color: '#899191',
+    color: Colors.textSecondary,
   },
   errorContainer: {
     flex: 1,
@@ -337,11 +338,11 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 16,
-    color: '#E53E3E',
+    color: Colors.error,
   },
   imageContainer: {
     height: 250,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -354,61 +355,61 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     justifyContent: 'center',
     alignItems: 'center',
   },
   plantIconText: {
     fontSize: 48,
-    color: '#0A5C5C',
+    color: Colors.textSecondary,
   },
   infoSection: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    borderBottomColor: Colors.border,
   },
   plantName: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginBottom: 4,
   },
   originalName: {
     fontSize: 16,
     fontStyle: 'italic',
-    color: '#899191',
+    color: Colors.textSecondary,
     marginBottom: 8,
   },
   scientificName: {
     fontSize: 14,
     fontStyle: 'italic',
-    color: '#5A6C6C',
+    color: Colors.textTertiary,
     marginBottom: 8,
   },
   plantOwner: {
     fontSize: 16,
-    color: '#0A5C5C',
+    color: Colors.primary,
     marginBottom: 4,
   },
   plantLocation: {
     fontSize: 16,
-    color: '#0A5C5C',
+    color: Colors.primary,
     marginBottom: 4,
   },
   plantType: {
     fontSize: 16,
-    color: '#899191',
+    color: Colors.textSecondary,
   },
   section: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     marginTop: 8,
     padding: 20,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
     marginBottom: 16,
   },
   careRequirements: {
@@ -420,19 +421,19 @@ const styles = StyleSheet.create({
   },
   careLabel: {
     fontSize: 12,
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 8,
     marginBottom: 4,
   },
   careLevel: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   careHistoryItem: {
     marginBottom: 20,
     padding: 16,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: Colors.backgroundSecondary,
     borderRadius: 12,
   },
   careHistoryHeader: {
@@ -444,15 +445,15 @@ const styles = StyleSheet.create({
   careHistoryTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   careHistoryDetail: {
     fontSize: 14,
-    color: '#899191',
+    color: Colors.textSecondary,
     marginBottom: 4,
   },
   actionButton: {
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
@@ -460,12 +461,12 @@ const styles = StyleSheet.create({
   actionButtonText: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#FFFFFF',
+    color: Colors.surface,
   },
   description: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   detailRow: {
     flexDirection: 'row',
@@ -474,12 +475,12 @@ const styles = StyleSheet.create({
   },
   detailLabel: {
     fontSize: 14,
-    color: '#899191',
+    color: Colors.textSecondary,
     flex: 1,
   },
   detailValue: {
     fontSize: 14,
-    color: '#2E3333',
+    color: Colors.textPrimary,
     flex: 2,
     textAlign: 'right',
   },
@@ -489,20 +490,20 @@ const styles = StyleSheet.create({
    tipContainer: {
      marginBottom: 16,
      padding: 12,
-     backgroundColor: '#F8F9FA',
+     backgroundColor: Colors.backgroundSecondary,
      borderRadius: 8,
      borderLeftWidth: 3,
-     borderLeftColor: '#0A5C5C',
+     borderLeftColor: Colors.primary,
    },
    tipTitle: {
      fontSize: 16,
      fontWeight: '600',
-     color: '#2E3333',
+     color: Colors.textPrimary,
      marginBottom: 8,
    },
    tipText: {
      fontSize: 14,
      lineHeight: 20,
-     color: '#5A6C6C',
+     color: Colors.textTertiary,
    },
  }); 

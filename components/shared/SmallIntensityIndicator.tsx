@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { SunIcon, WaterIcon, FertilizerIcon } from '../DynamicIcons';
+import { Colors } from '../../config/theme';
 
 interface SmallIntensityIndicatorProps {
   level: number;
@@ -25,10 +26,19 @@ const SmallIntensityIndicator = React.memo(({
 
   const getColor = () => {
     switch (iconType) {
-      case 'light': return level <= 2 ? '#FFA726' : level <= 4 ? '#FF8F00' : '#E65100';
-      case 'water': return level <= 2 ? '#29e9f6' : level <= 4 ? '#29B6F6' : '#0D47A1';
-      case 'fertilizer': return level <= 2 ? '#C8E6C9' : level <= 4 ? '#81C784' : '#4CAF50';
-      default: return '#0A5C5C';
+      case 'light': 
+        if (level <= 2) return Colors.light.level1;
+        if (level <= 4) return Colors.light.level3;
+        return Colors.light.level5;
+      case 'water': 
+        if (level <= 2) return Colors.water.level1;
+        if (level <= 4) return Colors.water.level3;
+        return Colors.water.level5;
+      case 'fertilizer': 
+        if (level <= 2) return Colors.fertilizer.level1;
+        if (level <= 4) return Colors.fertilizer.level3;
+        return Colors.fertilizer.level5;
+      default: return Colors.primary;
     }
   };
 
@@ -43,76 +53,72 @@ const SmallIntensityIndicator = React.memo(({
     }
   };
 
+  const handlePress = () => {
+    if (onPress) onPress();
+  };
+
   const content = (
-    <View style={styles.intensityContainer}>
-      <View style={styles.intensityIcon}>
-        <Svg width="40" height="40" viewBox="0 0 40 40">
-          {/* Background circle */}
-          <Circle
-            cx="20"
-            cy="20"
-            r={radius}
-            fill="none"
-            stroke="#E9FAFA"
-            strokeWidth={strokeWidth}
-          />
-          {/* Progress circle */}
-          <Circle
-            cx="20"
-            cy="20"
-            r={radius}
-            fill="none"
-            stroke={color}
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-            strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
-            transform="rotate(-90 20 20)"
-          />
-        </Svg>
-        <View style={styles.iconOverlay}>
-          {getIcon()}
-        </View>
-      </View>
-      <Text style={styles.levelText}>{level}/{maxLevel}</Text>
+    <View style={styles.iconContainer}>
+      {getIcon()}
+      <Svg style={styles.progressRing} width="40" height="40">
+        {/* Background circle */}
+        <Circle
+          cx="20"
+          cy="20"
+          r={radius}
+          fill="none"
+          stroke={Colors.border}
+          strokeWidth={strokeWidth}
+        />
+        {/* Progress circle */}
+        <Circle
+          cx="20"
+          cy="20"
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth={strokeWidth}
+          strokeDasharray={strokeDasharray}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+          transform="rotate(-90 20 20)"
+        />
+      </Svg>
     </View>
   );
 
-  // Only wrap in TouchableOpacity if onPress is provided
+  // Only use TouchableOpacity when editing (onPress provided)
   if (onPress) {
     return (
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={handlePress} style={styles.container}>
         {content}
       </TouchableOpacity>
     );
   }
 
-  return content;
+  // Use View for read-only display
+  return (
+    <View style={styles.container}>
+      {content}
+    </View>
+  );
 });
 
 const styles = StyleSheet.create({
-  intensityContainer: {
+  container: {
     alignItems: 'center',
   },
-  intensityIcon: {
+  iconContainer: {
     position: 'relative',
-    alignItems: 'center',
+    width: 40,
+    height: 40,
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  iconOverlay: {
+  progressRing: {
     position: 'absolute',
     top: 0,
     left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  levelText: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 4,
-    fontWeight: '500',
   },
 });
 
