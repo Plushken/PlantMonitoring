@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { useFocusEffect } from '@react-navigation/native';
-import { getFeaturedArticles } from '../../data/articles';
+import { useFocusEffect } from 'expo-router';
+import { getRandomArticles, Article } from '../../data/articles';
 import { SavedPlant, plantStorage } from '../../services/plant-storage';
 import PlantCard from '../../components/PlantCard';
 import { 
@@ -18,12 +18,25 @@ import {
 
 import { handleWaterWithConfirmation, handleFertilizeWithConfirmation } from '../../utils/care-handlers';
 import { navigateToPlantDetails, navigateToTasks, navigateToArticles, navigateToArticle, navigateToAddPlant } from '../../utils/navigation-utils';
+import { Colors } from '../../config/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const featuredArticles = getFeaturedArticles(3);
+  const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);
   const [mostNeglectedPlant, setMostNeglectedPlant] = useState<SavedPlant | null>(null);
   const [careMessage, setCareMessage] = useState<string>('');
+
+  // First render only (articles stay same during session)
+  useEffect(() => {
+    setFeaturedArticles(getRandomArticles(3));
+  }, []);
+
+  // Every time screen comes into focus (plants update)
+  useFocusEffect(
+    React.useCallback(() => {
+      findMostNeglectedPlant();
+    }, [])
+  );
 
   const findMostNeglectedPlant = async () => {
     try {
@@ -97,13 +110,6 @@ export default function HomeScreen() {
   const handlePlantPress = (plantId: string) => {
     navigateToPlantDetails(router, plantId);
   };
-
-  // Load when screen comes into focus
-  useFocusEffect(
-    React.useCallback(() => {
-      findMostNeglectedPlant();
-    }, [])
-  );
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -209,7 +215,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: Colors.background,
   },
   header: {
     paddingHorizontal: 14,
@@ -219,14 +225,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
     textAlign: 'center',
   },
   nameText: {
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
     textAlign: 'center',
     marginTop: 4,
   },
@@ -244,13 +250,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   sectionAction: {
     fontSize: 12,
     fontWeight: '400',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   articlesScroll: {
     marginLeft: -14,
@@ -267,7 +273,7 @@ const styles = StyleSheet.create({
   whatsUpImage: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
   },
   whatsUpOverlay: {
     position: 'absolute',
@@ -282,7 +288,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
     textAlign: 'center',
   },
   tasksSection: {
@@ -296,13 +302,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     letterSpacing: 1,
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 8,
     lineHeight: 22,
   },
   taskCard: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     marginTop: 20,
     height: 124,
@@ -318,7 +324,7 @@ const styles = StyleSheet.create({
   taskImageContainer: {
     width: 124,
     height: 124,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
     borderTopLeftRadius: 12,
     borderBottomLeftRadius: 12,
   },
@@ -334,13 +340,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
   },
   taskSubtitle: {
     fontSize: 12,
     fontWeight: '400',
     letterSpacing: 1,
-    color: '#899191',
+    color: Colors.textSecondary,
     marginTop: 8,
   },
   taskImages: {
@@ -376,7 +382,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   addPlantButton: {
-    backgroundColor: '#0A5C5C',
+    backgroundColor: Colors.primary,
     marginHorizontal: 14,
     height: 48,
     borderRadius: 12,
@@ -396,7 +402,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#FFFFFF',
+    color: Colors.textOnPrimary,
   },
   newsSection: {
     paddingLeft: 14,
@@ -407,7 +413,7 @@ const styles = StyleSheet.create({
     width: 130,
     height: 151,
     marginRight: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 12,
     shadowColor: '#000',
     shadowOffset: {
@@ -420,7 +426,7 @@ const styles = StyleSheet.create({
   },
   newsImageContainer: {
     height: 111,
-    backgroundColor: '#E9FAFA',
+    backgroundColor: Colors.backgroundSecondary,
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
@@ -428,7 +434,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     letterSpacing: 1,
-    color: '#2E3333',
+    color: Colors.textPrimary,
     textAlign: 'center',
     marginTop: 12,
   },

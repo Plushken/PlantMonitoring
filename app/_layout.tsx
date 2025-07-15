@@ -1,41 +1,30 @@
-import React, { useEffect } from 'react';
-import { Stack, useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { Stack } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function RootLayout() {
-  const router = useRouter();
-
-  useEffect(() => {
-    checkOnboardingStatus();
-  }, []);
-
-  const checkOnboardingStatus = async () => {
-    try {
-      const onboardingComplete = await AsyncStorage.getItem('onboardingComplete');
-      if (onboardingComplete !== 'true') {
-        router.replace('/onboarding1');
-      }
-    } catch (error) {
-      console.error('Error checking onboarding status:', error);
-      router.replace('/onboarding1');
-    }
-  };
-
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="onboarding1" />
-      <Stack.Screen name="onboarding2" />
-      <Stack.Screen name="add-plant" />
-      <Stack.Screen
-        name="(tabs)"
-        options={{
+    <SafeAreaProvider>
+      <Stack
+        screenOptions={{
           headerShown: false,
         }}
-      />
-    </Stack>
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="onboarding1" />
+        <Stack.Screen name="onboarding2" />
+        <Stack.Screen name="add-plant" />
+        <Stack.Screen name="tasks" />
+        <Stack.Screen name="articles" />
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="about/[id]" />
+        <Stack.Screen name="article/[id]" />
+      </Stack>
+    </SafeAreaProvider>
   );
-} 
+}
