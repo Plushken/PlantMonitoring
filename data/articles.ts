@@ -380,4 +380,9 @@ export const getArticlesByCategory = (category: string): Article[] => {
 
 export const getFeaturedArticles = (count: number = 3): Article[] => {
   return articlesData.slice(0, count);
+};
+
+export const getRandomArticles = (count: number = 3): Article[] => {
+  const shuffled = [...articlesData].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
 }; 

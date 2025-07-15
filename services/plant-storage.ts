@@ -25,15 +25,29 @@ export interface SavedPlant {
 const STORAGE_KEY = 'saved_plants';
 
 class PlantStorage {
+  private async initializeStorage(): Promise<void> {
+    try {
+      // Test if AsyncStorage is working by trying to read a test key
+      await AsyncStorage.getItem('__storage_test__');
+    } catch (error) {
+      console.error('Storage initialization failed:', error);
+      throw new Error('Failed to initialize storage. Please restart the app.');
+    }
+  }
+
   // Получить все сохраненные растения
   async getAllPlants(): Promise<SavedPlant[]> {
     try {
+      await this.initializeStorage();
       const plantsJson = await AsyncStorage.getItem(STORAGE_KEY);
       return plantsJson ? JSON.parse(plantsJson) : [];
-    } catch (error) {
-      console.error('Error loading plants:', error);
-      return [];
-    }
+          } catch (error) {
+        console.error('Error loading plants:', error);
+        if (error instanceof Error && error.message?.includes('Failed to create storage directory')) {
+          console.error('Storage directory error detected. This may be due to Expo configuration issues.');
+        }
+        return [];
+      }
   }
 
   // Получить растения конкретного пользователя
