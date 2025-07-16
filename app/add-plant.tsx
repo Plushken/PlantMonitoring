@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import Svg, { Path, Circle } from 'react-native-svg';
+
 
 import * as ImagePicker from 'expo-image-picker';
 import { createPermaPeopleAPI, Plant } from '../services/permapeople-api';
