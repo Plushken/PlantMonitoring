@@ -1,11 +1,8 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import OnboardingLayout from '../components/OnboardingLayout';
-import OnboardingIllustration from '../components/OnboardingIllustration';
 import PrimaryButton from '../components/PrimaryButton';
-import { SvgXml } from 'react-native-svg';
-import onboarding1Svg from '../assets/onboarding1-illustration.svg';
 import { Colors } from '../config/theme';
 
 const Onboarding1Screen: React.FC = () => {
@@ -13,10 +10,18 @@ const Onboarding1Screen: React.FC = () => {
 
   return (
     <OnboardingLayout>
-      <OnboardingIllustration
-        svg={onboarding1Svg}
-        alt="Illustration of a green paradise with plants."
-      />
+      <View
+        accessible
+        accessibilityRole="image"
+        accessibilityLabel="Illustration of a green paradise with plants."
+        style={styles.imageContainer}
+      >
+        <Image
+          source={require('../assets/1.png')}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
       <Text
         style={styles.title}
         accessibilityRole="header"
@@ -34,6 +39,15 @@ const Onboarding1Screen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    width: '100%',
+    aspectRatio: 1,
+    marginBottom: 32,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
   title: {
     fontSize: 12,
     fontWeight: '400',
