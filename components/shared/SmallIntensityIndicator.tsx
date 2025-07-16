@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import { Image } from 'expo-image';
 import { SunIcon, WaterIcon, FertilizerIcon } from '../DynamicIcons';
 import { Colors } from '../../config/theme';
 
@@ -11,6 +11,18 @@ interface SmallIntensityIndicatorProps {
   maxLevel?: number;
 }
 
+// Helper function to get progress ring source based on level
+const getProgressRingSource = (level: number, maxLevel: number = 5) => {
+  const progress = Math.min(Math.max(level / maxLevel, 0), 1);
+  
+  if (progress === 0) return require('../../assets/icons/progress-ring-base.svg');
+  if (progress <= 0.2) return require('../../assets/icons/progress-ring-20.svg');
+  if (progress <= 0.4) return require('../../assets/icons/progress-ring-40.svg');
+  if (progress <= 0.6) return require('../../assets/icons/progress-ring-60.svg');
+  if (progress <= 0.8) return require('../../assets/icons/progress-ring-80.svg');
+  return require('../../assets/icons/progress-ring-100.svg');
+};
+
 // Enhanced intensity indicator with 5 levels (formerly IntensityIndicator)
 const SmallIntensityIndicator = React.memo(({ 
   level, 
@@ -18,12 +30,6 @@ const SmallIntensityIndicator = React.memo(({
   iconType,
   maxLevel = 5
 }: SmallIntensityIndicatorProps) => {
-  const radius = 16;
-  const strokeWidth = 3;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDasharray = circumference;
-  const strokeDashoffset = circumference - (level / maxLevel) * circumference;
-
   const getColor = () => {
     switch (iconType) {
       case 'light': 
@@ -60,30 +66,17 @@ const SmallIntensityIndicator = React.memo(({
   const content = (
     <View style={styles.iconContainer}>
       {getIcon()}
-      <Svg style={styles.progressRing} width="40" height="40">
-        {/* Background circle */}
-        <Circle
-          cx="20"
-          cy="20"
-          r={radius}
-          fill="none"
-          stroke={Colors.border}
-          strokeWidth={strokeWidth}
+      <View style={styles.progressRing}>
+        {/* Progress ring with filling effect */}
+        <Image
+          source={getProgressRingSource(level, maxLevel)}
+          style={[
+            { width: 40, height: 40 },
+            { tintColor: color }
+          ]}
+          contentFit="contain"
         />
-        {/* Progress circle */}
-        <Circle
-          cx="20"
-          cy="20"
-          r={radius}
-          fill="none"
-          stroke={color}
-          strokeWidth={strokeWidth}
-          strokeDasharray={strokeDasharray}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          transform="rotate(-90 20 20)"
-        />
-      </Svg>
+      </View>
     </View>
   );
 
@@ -119,6 +112,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    width: 40,
+    height: 40,
   },
 });
 
